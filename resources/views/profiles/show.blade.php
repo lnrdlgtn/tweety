@@ -18,9 +18,11 @@
                 <p class="text-sm">Joined {{ $user->created_at->diffForHumans() }}</p>
             </div>
             <div class="flex">
-                <a href="" class="rounded-full shadow py-2 px-4 mx-2 text-black text-xs">
-                    Edit Profile
-                </a>
+                @can('edit', $user)
+                    <a href="{{ $user->path('edit') }}" class="rounded-full shadow py-2 px-4 mx-2 text-black text-xs">
+                        Edit Profile
+                    </a>
+                @endcan
                 <x-follow-button :user="$user"></x-follow-button>
             </div>
         </div>
